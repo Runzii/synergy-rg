@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synergy RG — Automated Systems. High-Scale Growth.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --copper: #C8845A;
+  --copper-light: #E8A87C;
+  --copper-dark: #8B5E3C;
+  --copper-pale: #F2D4BE;
+  --blue: #4FC3F7;
+  --blue-deep: #1A8FBF;
+  --purple: #7C4DFF;
+  --purple-mid: #9C6FFF;
+  --gold: #D4A844;
+  --dark: #0F0805;
+  --dark-2: #1A0F08;
+  --dark-3: #221408;
+  --off-white: #FAF3EE;
+  --text-muted: rgba(250,243,238,0.5);
+  --text-dim: rgba(250,243,238,0.25);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: var(--off-white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
+
+/* ======= NAV ======= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 0 60px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15,8,5,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200,132,90,0.1);
+}
+
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+.nav-logo-mark {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--copper-dark), var(--copper));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue'; font-size: 18px;
+  color: var(--off-white); letter-spacing: 0.03em;
+  box-shadow: 0 0 16px rgba(200,132,90,0.3);
+}
+
+.nav-logo-text { font-family: 'Bebas Neue'; font-size: 22px; letter-spacing: 0.12em; }
+.nav-logo-text .synergy { color: var(--copper-light); }
+.nav-logo-text .rg {
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-left: 4px;
+}
+
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a {
+  text-decoration: none; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted); transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--copper-light); }
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+  color: var(--off-white) !important;
+  padding: 10px 24px !important;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: linear-gradient(135deg, var(--copper-light), var(--copper)) !important; color: var(--dark) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--copper); transition: all 0.3s; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(15,8,5,0.98); flex-direction: column; padding: 24px; gap: 20px; border-bottom: 1px solid rgba(200,132,90,0.15); }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+}
+
+/* ======= HERO ======= */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 60px 80px;
+  position: relative; overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,132,90,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 60%, rgba(124,77,255,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(76,195,247,0.06) 0%, transparent 50%);
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(200,132,90,0.3);
+  padding: 8px 20px; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--copper);
+  margin-bottom: 32px; animation: fadeUp 0.8s ease both;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  position: relative;
+}
+
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--copper); border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero-headline {
+  font-family: 'Bebas Neue';
+  font-size: clamp(56px, 10vw, 130px);
+  line-height: 0.92; letter-spacing: 0.02em;
+  margin-bottom: 12px; animation: fadeUp 0.8s 0.1s ease both;
+  position: relative;
+}
+
+.hero-headline .line-1 {
+  background: linear-gradient(135deg, var(--copper-pale), var(--copper-light), var(--copper));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  display: block;
+}
+.hero-headline .line-2 {
+  background: linear-gradient(135deg, var(--blue), var(--purple-mid), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  display: block;
+}
+.hero-headline .line-3 {
+  color: rgba(250,243,238,0.12); display: block; font-size: 0.65em; letter-spacing: 0.06em;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px); line-height: 1.7; font-weight: 300;
+  color: var(--text-muted); max-width: 600px; margin: 24px auto 48px;
+  animation: fadeUp 0.8s 0.2s ease both; position: relative;
+}
+.hero-sub strong { color: var(--copper-light); font-weight: 600; }
+
+.hero-actions {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s ease both; margin-bottom: 80px; position: relative;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+  color: var(--off-white); border: none; padding: 16px 40px;
+  font-family: 'Barlow'; font-size: 12px; font-weight: 800;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: all 0.3s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--copper-light), var(--copper));
+  transform: translateY(-2px); box-shadow: 0 12px 32px rgba(200,132,90,0.3);
+}
+
+.btn-secondary {
+  background: transparent; color: var(--off-white);
+  border: 1px solid rgba(200,132,90,0.35); padding: 16px 40px;
+  font-family: 'Barlow'; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: all 0.3s; text-decoration: none; display: inline-block;
+}
+.btn-secondary:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+.hero-trust {
+  display: flex; align-items: center; gap: 32px; justify-content: center;
+  animation: fadeUp 0.8s 0.4s ease both; flex-wrap: wrap; position: relative;
+}
+
+.trust-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.trust-num {
+  font-family: 'Bebas Neue'; font-size: 32px;
+  background: linear-gradient(135deg, var(--copper-light), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1;
+}
+.trust-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); font-weight: 400; }
+.trust-divider { width: 1px; height: 40px; background: rgba(200,132,90,0.2); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 100px 24px 60px; }
+  .trust-divider { display: none; }
+}
+
+/* ======= TICKER ======= */
+.ticker-bar {
+  background: var(--dark-2);
+  border-top: 1px solid rgba(200,132,90,0.1);
+  border-bottom: 1px solid rgba(200,132,90,0.1);
+  padding: 14px 0; overflow: hidden;
+}
+.ticker-track {
+  display: flex; gap: 60px;
+  animation: ticker 30s linear infinite;
+  width: max-content;
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 500; white-space: nowrap;
+}
+.ticker-dot { width: 4px; height: 4px; background: var(--copper); border-radius: 50%; }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ======= SECTIONS ======= */
+section { padding: 100px 60px; }
+
+.section-label {
+  font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--copper); font-weight: 700; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before { content: ''; width: 32px; height: 1px; background: var(--copper); }
+
+.section-title {
+  font-family: 'Bebas Neue'; font-size: clamp(40px, 5vw, 64px);
+  line-height: 1; letter-spacing: 0.03em; margin-bottom: 20px;
+}
+.section-title .accent-copper {
+  background: linear-gradient(135deg, var(--copper-light), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.section-title .accent-blue {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.section-body { font-size: 17px; line-height: 1.75; color: var(--text-muted); font-weight: 300; max-width: 560px; }
+
+@media (max-width: 768px) { section { padding: 60px 24px; } }
+
+/* ======= PROBLEM ======= */
+.problem-section {
+  background: var(--dark-2);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+@media (max-width: 900px) { .problem-section { grid-template-columns: 1fr; gap: 40px; } }
+
+.problem-list { display: flex; flex-direction: column; margin-top: 40px; }
+.problem-item {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 24px 0; border-bottom: 1px solid rgba(200,132,90,0.08);
+  transition: all 0.3s;
+}
+.problem-item:hover { padding-left: 8px; }
+.problem-icon {
+  width: 40px; height: 40px; border: 1px solid rgba(200,132,90,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+.problem-text h4 { font-size: 15px; font-weight: 700; color: var(--off-white); margin-bottom: 4px; letter-spacing: 0.03em; }
+.problem-text p { font-size: 13px; line-height: 1.6; color: var(--text-muted); font-weight: 300; }
+
+.problem-card {
+  background: var(--dark); border: 1px solid rgba(200,132,90,0.12);
+  padding: 32px; width: 100%; max-width: 380px; position: relative;
+}
+.problem-card::before {
+  content: 'WITHOUT SYNERGY RG';
+  position: absolute; top: -10px; left: 24px;
+  font-size: 9px; letter-spacing: 0.3em; color: var(--copper-dark);
+  background: var(--dark); padding: 0 8px; font-weight: 700;
+}
+.meter-row { margin-bottom: 20px; }
+.meter-label {
+  display: flex; justify-content: space-between;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 8px; font-weight: 500;
+}
+.meter-bar { height: 6px; background: rgba(250,243,238,0.05); overflow: hidden; }
+.meter-fill { height: 100%; background: rgba(200,132,90,0.25); }
+.meter-fill.low { width: 18%; }
+.meter-fill.med { width: 35%; }
+.meter-fill.high { width: 55%; }
+.meter-fill.full { width: 72%; }
+
+/* ======= HOW IT WORKS ======= */
+.how-section { background: var(--dark); }
+
+.steps-container {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 60px; position: relative;
+}
+.steps-container::before {
+  content: ''; position: absolute; top: 48px;
+  left: calc(12.5% + 20px); right: calc(12.5% + 20px); height: 1px;
+  background: linear-gradient(90deg, var(--copper), var(--blue), var(--purple), var(--copper));
+  opacity: 0.2;
+}
+@media (max-width: 768px) { .steps-container { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .steps-container { grid-template-columns: 1fr; } }
+
+.step { padding: 0 24px 40px; text-align: center; }
+.step-num {
+  width: 56px; height: 56px; border: 1px solid rgba(200,132,90,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue'; font-size: 22px; margin: 0 auto 24px;
+  background: var(--dark-2);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: all 0.3s;
+}
+.step:nth-child(1) .step-num { color: var(--copper); }
+.step:nth-child(2) .step-num { color: var(--blue); }
+.step:nth-child(3) .step-num { color: var(--purple-mid); }
+.step:nth-child(4) .step-num { color: var(--gold); }
+.step:hover .step-num { background: rgba(200,132,90,0.08); border-color: var(--copper); box-shadow: 0 0 24px rgba(200,132,90,0.15); }
+.step-title { font-family: 'Bebas Neue'; font-size: 22px; letter-spacing: 0.05em; margin-bottom: 12px; }
+.step-desc { font-size: 13px; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
+
+/* ======= SERVICES ======= */
+.services-section { background: var(--dark-3); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: rgba(200,132,90,0.08); margin-top: 60px; border: 1px solid rgba(200,132,90,0.08);
+}
+@media (max-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .services-grid { grid-template-columns: 1fr; } }
+
+.service-card {
+  background: var(--dark); padding: 40px 32px;
+  position: relative; overflow: hidden; transition: background 0.3s;
+}
+.service-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 0; transition: height 0.3s;
+}
+.service-card:nth-child(1)::after { background: linear-gradient(90deg, var(--copper), var(--gold)); }
+.service-card:nth-child(2)::after { background: linear-gradient(90deg, var(--blue-deep), var(--blue)); }
+.service-card:nth-child(3)::after { background: linear-gradient(90deg, var(--purple), var(--purple-mid)); }
+.service-card:nth-child(4)::after { background: linear-gradient(90deg, var(--copper-dark), var(--copper)); }
+.service-card:nth-child(5)::after { background: linear-gradient(90deg, var(--blue), var(--purple)); }
+.service-card:nth-child(6)::after { background: linear-gradient(90deg, var(--gold), var(--copper-light)); }
+.service-card:hover { background: rgba(200,132,90,0.03); }
+.service-card:hover::after { height: 2px; }
+.service-icon-wrap { font-size: 36px; margin-bottom: 20px; display: block; }
+.service-name { font-family: 'Bebas Neue'; font-size: 26px; letter-spacing: 0.04em; margin-bottom: 12px; color: var(--off-white); }
+.service-desc { font-size: 14px; line-height: 1.75; color: var(--text-muted); font-weight: 300; margin-bottom: 20px; }
+.service-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--copper); }
+.service-tag::after { content: '→'; }
+
+/* ======= RESULTS ======= */
+.results-section { background: var(--dark-2); text-align: center; }
+.results-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin: 60px 0; border: 1px solid rgba(200,132,90,0.12);
+}
+@media (max-width: 768px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .results-grid { grid-template-columns: 1fr; } }
+
+.result-item { padding: 48px 24px; border-right: 1px solid rgba(200,132,90,0.12); }
+.result-item:last-child { border-right: none; }
+.result-num { font-family: 'Bebas Neue'; font-size: 72px; line-height: 1; display: block; margin-bottom: 4px; }
+.result-item:nth-child(1) .result-num { background: linear-gradient(135deg, var(--copper-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.result-item:nth-child(2) .result-num { background: linear-gradient(135deg, var(--blue), var(--blue-deep)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.result-item:nth-child(3) .result-num { background: linear-gradient(135deg, var(--purple-mid), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.result-item:nth-child(4) .result-num { background: linear-gradient(135deg, var(--gold), var(--copper)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.result-label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); font-weight: 400; }
+
+/* ======= TESTIMONIALS ======= */
+.testimonials-section { background: var(--dark); }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: rgba(200,132,90,0.06); margin-top: 60px; border: 1px solid rgba(200,132,90,0.06);
+}
+@media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+.testimonial-card { background: var(--dark-2); padding: 40px 32px; position: relative; }
+.testimonial-quote { font-size: 48px; line-height: 0.7; font-family: 'Bebas Neue'; color: var(--copper); opacity: 0.2; margin-bottom: 16px; }
+.testimonial-text { font-size: 15px; line-height: 1.75; color: rgba(250,243,238,0.7); font-style: italic; font-weight: 300; margin-bottom: 28px; }
+.testimonial-divider { height: 1px; background: rgba(200,132,90,0.15); margin-bottom: 24px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--copper-dark), var(--copper));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue'; font-size: 18px; color: var(--off-white); flex-shrink: 0;
+}
+.author-name { font-size: 14px; font-weight: 700; color: var(--off-white); letter-spacing: 0.03em; }
+.author-title { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+.testimonial-stars { position: absolute; top: 32px; right: 32px; color: var(--gold); font-size: 12px; letter-spacing: 2px; }
+
+/* ======= OFFER ======= */
+.offer-section { background: var(--dark-3); text-align: center; }
+.offer-intro { max-width: 600px; margin: 0 auto 60px; }
+.offer-intro .section-label { justify-content: center; }
+.offer-intro .section-label::before { display: none; }
+.offer-intro .section-label::after { content: ''; width: 32px; height: 1px; background: var(--copper); }
+
+.offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; }
+@media (max-width: 900px) { .offer-grid { grid-template-columns: 1fr; max-width: 480px; } }
+
+.offer-card {
+  background: var(--dark-2); border: 1px solid rgba(200,132,90,0.1);
+  padding: 40px 32px; text-align: left; position: relative; transition: all 0.3s;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+.offer-card.featured { border-color: rgba(200,132,90,0.4); background: rgba(200,132,90,0.04); }
+.offer-card.featured::before {
+  content: 'MOST POPULAR'; position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--copper), var(--gold)); color: var(--dark);
+  font-size: 9px; letter-spacing: 0.3em; padding: 4px 12px; font-weight: 800; white-space: nowrap;
+}
+.offer-card:hover { border-color: rgba(200,132,90,0.25); transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
+
+.offer-tier { font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--copper); font-weight: 700; margin-bottom: 12px; }
+.offer-name { font-family: 'Bebas Neue'; font-size: 32px; letter-spacing: 0.05em; margin-bottom: 8px; }
+.offer-price { font-family: 'Bebas Neue'; font-size: 48px; line-height: 1; color: var(--copper-light); margin-bottom: 4px; }
+.offer-period { font-size: 12px; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; }
+.offer-divider { height: 1px; background: rgba(200,132,90,0.1); margin-bottom: 24px; }
+
+.offer-features { list-style: none; margin-bottom: 32px; }
+.offer-features li { font-size: 13px; line-height: 1.6; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid rgba(200,132,90,0.05); display: flex; align-items: center; gap: 10px; font-weight: 300; }
+.offer-features li::before { content: '✓'; color: var(--copper); font-weight: 700; font-size: 12px; flex-shrink: 0; }
+
+.offer-btn {
+  width: 100%; padding: 14px; border: none; cursor: pointer;
+  font-family: 'Barlow'; font-size: 11px; font-weight: 800;
+  letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s; text-decoration: none; display: block; text-align: center;
+}
+.offer-btn-outline {
+  background: transparent; color: var(--off-white); border: 1px solid rgba(200,132,90,0.3);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.offer-btn-outline:hover { border-color: var(--copper); color: var(--copper); }
+.offer-btn-filled {
+  background: linear-gradient(135deg, var(--copper), var(--copper-dark)); color: var(--off-white);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.offer-btn-filled:hover { background: linear-gradient(135deg, var(--copper-light), var(--copper)); box-shadow: 0 8px 24px rgba(200,132,90,0.3); }
+
+/* ======= FAQ ======= */
+.faq-section { background: var(--dark-2); }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; margin-top: 60px; }
+@media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+
+.faq-item { border-bottom: 1px solid rgba(200,132,90,0.08); }
+.faq-question {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 0; cursor: pointer; font-size: 15px; font-weight: 600;
+  color: var(--off-white); letter-spacing: 0.02em; transition: color 0.2s;
+}
+.faq-question:hover { color: var(--copper-light); }
+.faq-toggle {
+  width: 24px; height: 24px; border: 1px solid rgba(200,132,90,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--copper); flex-shrink: 0; transition: all 0.3s;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+.faq-item.open .faq-toggle { background: var(--copper); color: var(--dark); transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+  font-size: 14px; line-height: 1.75; color: var(--text-muted); font-weight: 300;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding-bottom: 24px; }
+
+/* ======= CTA ======= */
+.cta-section {
+  background: var(--dark); text-align: center; padding: 120px 60px;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,132,90,0.06) 0%, transparent 70%);
+}
+.cta-section .section-label { justify-content: center; }
+.cta-section .section-label::before { display: none; }
+.cta-section .section-label::after { content: ''; width: 32px; height: 1px; background: var(--copper); }
+.cta-headline {
+  font-family: 'Bebas Neue'; font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 24px; position: relative;
+}
+.cta-sub { font-size: 18px; font-weight: 300; color: var(--text-muted); max-width: 500px; margin: 0 auto 48px; line-height: 1.7; position: relative; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-note { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 20px; text-transform: uppercase; position: relative; }
+
+/* ======= FOOTER ======= */
+footer {
+  background: var(--dark-2); padding: 60px 60px 40px;
+  border-top: 1px solid rgba(200,132,90,0.08);
+}
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+@media (max-width: 768px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-top { grid-template-columns: 1fr; } footer { padding: 40px 24px 24px; } }
+
+.footer-brand p { font-size: 13px; line-height: 1.75; color: var(--text-muted); font-weight: 300; margin-top: 16px; max-width: 240px; }
+.footer-col h5 { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--copper); font-weight: 700; margin-bottom: 16px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; font-weight: 300; }
+.footer-col ul li a:hover { color: var(--off-white); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(200,132,90,0.06); flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: var(--text-dim); font-weight: 300; }
+
+/* ======= SCROLL REVEAL ======= */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">SR</div>
+    <div class="nav-logo-text">
+      <span class="synergy">SYNERGY</span><span class="rg">RG</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-8151" class="nav-cta">Get Started</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">◆ Automated Business Growth Systems</div>
+  <h1 class="hero-headline">
+    <span class="line-1">AUTOMATED</span>
+    <span class="line-2">SYSTEMS.</span>
+    <span class="line-3">HIGH-SCALE GROWTH.</span>
+  </h1>
+  <p class="hero-sub">
+    We build the <strong>automated revenue engines</strong> that let your business grow without grinding. From lead generation to client retention — fully systematized.
+  </p>
+  <div class="hero-actions">
+    <a href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-8151" class="btn-primary">Book a Strategy Call</a>
+    <a href="#how" class="btn-secondary">See How It Works</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item">
+      <span class="trust-num">200+</span>
+      <span class="trust-label">Clients Scaled</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-num">$40M+</span>
+      <span class="trust-label">Revenue Generated</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-num">97%</span>
+      <span class="trust-label">Retention Rate</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-num">4.9★</span>
+      <span class="trust-label">Average Rating</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span class="ticker-dot"></span>Automated Lead Gen</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>CRM Buildout</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Email &amp; SMS Sequences</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Sales Funnel Design</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Paid Ads Management</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Pipeline Automation</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Reputation Management</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Booking Systems</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>AI Chat Agents</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Reporting Dashboards</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ticker-dot"></span>Automated Lead Gen</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>CRM Buildout</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Email &amp; SMS Sequences</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Sales Funnel Design</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Paid Ads Management</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Pipeline Automation</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Reputation Management</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Booking Systems</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>AI Chat Agents</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Reporting Dashboards</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem-section reveal" id="problem">
+  <div>
+    <p class="section-label">The Problem</p>
+    <h2 class="section-title">YOUR BUSINESS IS <span class="accent-copper">LEAKING</span> REVENUE</h2>
+    <p class="section-body">Most businesses have the leads but lose them in the gaps — slow follow-up, no nurture, no system. We close every gap.</p>
+    <div class="problem-list">
+      <div class="problem-item">
+        <div class="problem-icon">⏱</div>
+        <div class="problem-text">
+          <h4>Leads Going Cold</h4>
+          <p>78% of leads go to the first business that responds. Manual follow-up kills deals before they start.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🔁</div>
+        <div class="problem-text">
+          <h4>No Nurture System</h4>
+          <p>One-time outreach doesn't convert. Without automated sequences, you're leaving money in the inbox.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">📉</div>
+        <div class="problem-text">
+          <h4>Invisible Pipeline</h4>
+          <p>If you can't see your pipeline, you can't manage it. Most owners are flying blind on revenue forecasts.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🕳</div>
+        <div class="problem-text">
+          <h4>Referrals Left to Chance</h4>
+          <p>Happy clients are your best asset — but without a system, referrals stay accidental, not intentional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="problem-visual">
+    <div class="problem-card">
+      <div class="meter-row">
+        <div class="meter-label"><span>Lead Conversion</span><span>18%</span></div>
+        <div class="meter-bar"><div class="meter-fill low"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Follow-up Speed</span><span>35%</span></div>
+        <div class="meter-bar"><div class="meter-fill med"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Pipeline Visibility</span><span>55%</span></div>
+        <div class="meter-bar"><div class="meter-fill high"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Client Retention</span><span>72%</span></div>
+        <div class="meter-bar"><div class="meter-fill full"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section reveal" id="how">
+  <p class="section-label">The Process</p>
+  <h2 class="section-title">HOW <span class="accent-blue">SYNERGY RG</span> WORKS</h2>
+  <div class="steps-container">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3 class="step-title">Audit &amp; Diagnose</h3>
+      <p class="step-desc">We map your current customer journey and pinpoint every revenue leak, bottleneck, and missed opportunity.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3 class="step-title">Build the Engine</h3>
+      <p class="step-desc">Our team builds your CRM, automations, funnels, and sequences — fully customized to your business model.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3 class="step-title">Launch &amp; Scale</h3>
+      <p class="step-desc">We go live and immediately start generating leads, booking appointments, and nurturing your pipeline 24/7.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3 class="step-title">Optimize &amp; Grow</h3>
+      <p class="step-desc">Ongoing data, split-testing, and monthly reviews ensure the system keeps compounding returns over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section reveal" id="services">
+  <p class="section-label">What We Build</p>
+  <h2 class="section-title">AUTOMATED <span class="accent-copper">GROWTH</span> SYSTEMS</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon-wrap">⚡</span>
+      <h3 class="service-name">Lead Generation</h3>
+      <p class="service-desc">Multi-channel paid and organic campaigns that fill your pipeline with qualified prospects every single week.</p>
+      <span class="service-tag">Explore Service</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon-wrap">🤖</span>
+      <h3 class="service-name">CRM Automation</h3>
+      <p class="service-desc">End-to-end CRM setup in GoHighLevel with smart pipelines, auto-tagging, and trigger-based follow-up sequences.</p>
+      <span class="service-tag">Explore Service</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon-wrap">📬</span>
+      <h3 class="service-name">Email &amp; SMS Nurture</h3>
+      <p class="service-desc">Behavior-triggered sequences that stay warm with leads for months without lifting a finger.</p>
+      <span class="service-tag">Explore Service</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon-wrap">🎯</span>
+      <h3 class="service-name">Funnel Architecture</h3>
+      <p class="service-desc">High-converting sales funnels, VSL pages, and booking systems designed to turn cold traffic into paying clients.</p>
+      <span class="service-tag">Explore Service</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon-wrap">💬</span>
+      <h3 class="service-name">AI Chat Agents</h3>
+      <p class="service-desc">Intelligent conversational bots that qualify leads, answer FAQs, and book appointments around the clock.</p>
+      <span class="service-tag">Explore Service</span>
+    </div>
+    <div class="service-card">
+      <span class="service-icon-wrap">📊</span>
+      <h3 class="service-name">Reporting &amp; Analytics</h3>
+      <p class="service-desc">Live dashboards that track every metric — cost per lead, close rates, revenue attribution — with weekly reporting.</p>
+      <span class="service-tag">Explore Service</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section reveal" id="results">
+  <p class="section-label" style="justify-content:center;">By the Numbers</p>
+  <h2 class="section-title">RESULTS THAT <span class="accent-copper">SPEAK</span> FOR THEMSELVES</h2>
+  <div class="results-grid">
+    <div class="result-item">
+      <span class="result-num">3.8×</span>
+      <span class="result-label">Avg. ROI in 90 Days</span>
+    </div>
+    <div class="result-item">
+      <span class="result-num">200+</span>
+      <span class="result-label">Businesses Scaled</span>
+    </div>
+    <div class="result-item">
+      <span class="result-num">$40M+</span>
+      <span class="result-label">Client Revenue Generated</span>
+    </div>
+    <div class="result-item">
+      <span class="result-num">14 Days</span>
+      <span class="result-label">Avg. Time to First Lead</span>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;">Across all clients in 2023–2024</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section reveal" id="testimonials">
+  <p class="section-label">Client Stories</p>
+  <h2 class="section-title">WHAT OUR <span class="accent-blue">CLIENTS</span> SAY</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Synergy RG completely transformed how we generate and close business. Within 60 days we had a full pipeline and our cost per acquisition dropped by 40%. Genuinely game-changing.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">
+        <div class="author-avatar">JM</div>
+        <div>
+          <div class="author-name">James M.</div>
+          <div class="author-title">CEO, Apex Roofing Co.</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">I was skeptical about automation but the team walked me through every step. We now book 30+ appointments per month on autopilot. Our revenue is up 180% year-over-year.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">
+        <div class="author-avatar">SR</div>
+        <div>
+          <div class="author-name">Sarah R.</div>
+          <div class="author-title">Owner, Revive Med Spa</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">The CRM buildout alone was worth ten times what we paid. Now I can actually see my entire pipeline and forecast revenue. My team went from chaotic to completely dialed in.</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author">
+        <div class="author-avatar">DK</div>
+        <div>
+          <div class="author-name">David K.</div>
+          <div class="author-title">Principal, Keystone HVAC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="offer-section reveal" id="pricing">
+  <div class="offer-intro">
+    <p class="section-label">Investment</p>
+    <h2 class="section-title">CHOOSE YOUR <span class="accent-copper">GROWTH</span> PLAN</h2>
+    <p class="section-body" style="margin:0 auto;text-align:center;">No long-term lock-ins. Every plan includes onboarding, buildout, and dedicated support.</p>
+  </div>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <p class="offer-tier">Starter</p>
+      <h3 class="offer-name">Foundation</h3>
+      <div class="offer-price">$997</div>
+      <p class="offer-period">/ month</p>
+      <div class="offer-divider"></div>
+      <ul class="offer-features">
+        <li>CRM Setup &amp; Configuration</li>
+        <li>1 Automated Follow-up Sequence</li>
+        <li>Booking Calendar Integration</li>
+        <li>Monthly Performance Report</li>
+        <li>Email Support</li>
+      </ul>
+      <a href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-8151" class="offer-btn offer-btn-outline">Get Started</a>
+    </div>
+    <div class="offer-card featured">
+      <p class="offer-tier">Most Popular</p>
+      <h3 class="offer-name">Growth Engine</h3>
+      <div class="offer-price">$2,497</div>
+      <p class="offer-period">/ month</p>
+      <div class="offer-divider"></div>
+      <ul class="offer-features">
+        <li>Everything in Foundation</li>
+        <li>Full Funnel Build (3 pages)</li>
+        <li>Email + SMS Nurture Sequences</li>
+        <li>Paid Ads Setup &amp; Management</li>
+        <li>AI Chat Agent Integration</li>
+        <li>Bi-weekly Strategy Calls</li>
+      </ul>
+      <a href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-8151" class="offer-btn offer-btn-filled">Get Started</a>
+    </div>
+    <div class="offer-card">
+      <p class="offer-tier">Enterprise</p>
+      <h3 class="offer-name">Scale System</h3>
+      <div class="offer-price">Custom</div>
+      <p class="offer-period">tailored pricing</p>
+      <div class="offer-divider"></div>
+      <ul class="offer-features">
+        <li>Everything in Growth Engine</li>
+        <li>Multi-location Support</li>
+        <li>Custom AI Workflows</li>
+        <li>Dedicated Account Manager</li>
+        <li>White-glove Onboarding</li>
+        <li>Weekly Executive Reports</li>
+      </ul>
+      <a href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-8151" class="offer-btn offer-btn-outline">Book a Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section reveal" id="faq">
+  <p class="section-label">Common Questions</p>
+  <h2 class="section-title">FREQUENTLY <span class="accent-copper">ASKED</span></h2>
+  <div class="faq-grid">
+    <div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How long until I see results?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">Most clients see their first automated leads within 14 days of launch. Full ROI typically shows within 60–90 days depending on your niche and existing assets.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Do I need existing tech or software?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">No. We set everything up for you inside GoHighLevel — a best-in-class CRM platform. We handle the entire tech stack so you can focus on running your business.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What industries do you work with?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">We specialize in home services, med spas, dental, legal, real estate, and professional services — any high-ticket business that relies on booked appointments to close revenue.</div>
+      </div>
+    </div>
+    <div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Is there a contract or lock-in?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">No long-term contracts. All plans are month-to-month after a 3-month minimum to allow enough time to properly build, launch, and optimize your system.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How involved do I need to be?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">Minimal. Once we onboard you (typically a 2-hour kickoff session), we handle the build entirely. After launch, we send you weekly reports and meet bi-weekly to review and optimize.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What happens after I sign up?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">You'll receive an onboarding email within 24 hours with your intake form and kickoff call link. We start your build within 5 business days of receiving your completed intake.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal" id="contact">
+  <p class="section-label" style="justify-content:center;">Ready to Scale?</p>
+  <h2 class="cta-headline">
+    <span style="background:linear-gradient(135deg,var(--copper-pale),var(--copper-light),var(--copper));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">LET'S BUILD YOUR</span><br>
+    <span style="background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">GROWTH ENGINE</span>
+  </h2>
+  <p class="cta-sub">Book a free 30-minute strategy call. We'll audit your current setup and show you exactly where you're losing revenue.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-primary">Book Your Free Strategy Call</a>
+    <a href="mailto:info@synergyrg.org" class="btn-secondary">Email Us Instead</a>
+  </div>
+  <p class="cta-note">No sales pressure. No obligation. Just clarity on your next move.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:12px;display:inline-flex;">
+        <div class="nav-logo-mark">SR</div>
+        <div class="nav-logo-text"><span class="synergy">SYNERGY</span><span class="rg">RG</span></div>
+      </a>
+      <p>We build automated revenue engines for growth-focused businesses. Systems that scale, data that decides, results that compound.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Lead Generation</a></li>
+        <li><a href="#">CRM Automation</a></li>
+        <li><a href="#">Email &amp; SMS</a></li>
+        <li><a href="#">Funnel Design</a></li>
+        <li><a href="#">AI Agents</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">Book a Call</a></li>
+        <li><a href="mailto:info@synergyrg.org">info@synergyrg.org</a></li>
+        <li><a href="#">Client Portal</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Synergy RG. All rights reserved.</p>
+    <p>Privacy Policy · Terms of Service</p>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// FAQ accordion
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll style
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(15,8,5,0.98)';
+    nav.style.boxShadow = '0 2px 32px rgba(0,0,0,0.4)';
+  } else {
+    nav.style.background = 'rgba(15,8,5,0.92)';
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>
